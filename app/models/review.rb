@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class Review < ActiveRecord::Base
     #belongs_to :team
     #validates :name, presence: true, uniqueness: true 
     #validates :date, presence: true
