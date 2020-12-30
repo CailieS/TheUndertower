@@ -1,7 +1,9 @@
-<%= form_for @user do |f|%>
-    <% f.text_field :name %>
-    <% f.text_field :email %>
-    <% f.password_field :password %>
-    <% f.submit "Register!" %>
-
+  <%= form_for @user, :url => login_path do |f|%>
+    User Name:
+    <%= f.text_field :name %><br>
+    Email:
+    <%= f.text_field :email %><br>
+    Password:
+    <%= f.password_field :password %><br>
+    <%= f.submit "Log In!" %>
 <% end %>
