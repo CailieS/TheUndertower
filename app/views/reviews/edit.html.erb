@@ -1,0 +1,9 @@
+<h1>Edit Your Review!</h1>
+
+<%= form_for @review do |f|%>
+    <%= f.label :title %>
+    <%= f.text_field :title %><br>
+    <%= f.label :review %>
+    <%= f.text_field :review %>
+    <%= f.submit "Edit!" %>
+<% end %>

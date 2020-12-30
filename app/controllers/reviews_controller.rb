@@ -20,6 +20,15 @@ class ReviewsController < ApplicationController
         @review =  Review.find(params[:id])
     end
 
+    def edit
+        @review =  Review.find(params[:id])
+    end
+
+    def destroy
+        @review.destroy
+        redirect_to review_path(@review)
+    end
+
     private
     
     def review_params
