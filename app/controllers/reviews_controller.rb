@@ -6,10 +6,18 @@ class ReviewsController < ApplicationController
     def create
         @review = Review.new(review_params)
         if @review.save
-            redirect_to review_path
+            redirect_to review_path(@review)
         else
             redirect_to reviews_new_path
         end
+    end
+
+    def index
+        @review = Review.all
+    end
+
+    def show
+        @review =  Review.find(params[:id])
     end
 
     private
