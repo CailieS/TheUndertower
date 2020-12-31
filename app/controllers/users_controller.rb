@@ -1,3 +1,4 @@
+require 'pry'
 class UsersController < ApplicationController
 
     def new
@@ -5,7 +6,13 @@ class UsersController < ApplicationController
     end
 
     def create
-
+        @user = User.new
+       
+        if @user.save
+            redirect_to review_path(@user)
+        else
+            redirect_to reviews_new_path
+        end
     end
 
     def show

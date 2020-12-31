@@ -1,4 +1,10 @@
-<% @review.each do |i| %>
-    <%= i.title %><br>
-    <%= i.review %>
-<% end %>
+<h2><%= review.title %></h2>
+<h3>by: <%= link_to review.title.name, review_posts_path(post.author) %></h3>
+<p><%= review.review %></p>
+
+
+
+<%# @review.each do |i| %>
+    <%=# i.title %><br>
+    <%=# i.review %>
+<%# end %>

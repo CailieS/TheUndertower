@@ -8,12 +8,16 @@ class ReviewsController < ApplicationController
         if @review.save
             redirect_to review_path(@review)
         else
-            redirect_to reviews_new_path
+            redirect_to reviews_path
         end
     end
 
     def index
-        @review = Review.all
+        if params[:book_id]
+            @review = Book.find(params[:author_id]).posts
+        else
+            @review = Post.all
+        end
     end
 
     def show

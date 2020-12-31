@@ -26,5 +26,5 @@ dracula = Book.new(title: "Dracula", author: "Bram Stoker", image_url: "https://
 charles = User.new(name: "Charles", email: "charles123@gmail.com", password: "password")
 rhonda = User.new(name: "Rhonda", email: "rhonda45@yahoo.com", password: "2468")
 tommy = User.new(name: "Tommy", email: "pinballwizard@gmail.com", password: "4125")
-jessica = User.new(name: "Jessica", email: "jessica@gmail.com" password: "1234")
-laura = User.new(name: "Laura", email: "laura321@yahoo.com" password: "laura")
+jessica = User.new(name: "Jessica", email: "jessica@gmail.com", password: "1234")
+laura = User.new(name: "Laura", email: "laura321@yahoo.com", password: "laura")
