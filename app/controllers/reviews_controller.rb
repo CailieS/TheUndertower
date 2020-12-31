@@ -14,14 +14,28 @@ class ReviewsController < ApplicationController
 
     def index
         if params[:book_id]
-            @review = Book.find(params[:author_id]).posts
+            @review = Book.find(params[:author_id])
+            @book = @book.reviews
+            if !@review
+                redirect_to kitchen_path, alert: "What you're looking for isn't here! Please try again."
+            else
+                @book = @book.reviews
+            end
         else
-            @review = Post.all
+            @review = Review.all
         end
     end
 
     def show
-        @review =  Review.find(params[:id])
+        if params[:book_id]
+        @book =  Book.find(id: params[:book_id])
+        @review = @book.book.find(id: params[:id])
+        if @review == nil 
+            redirect_to reviews_path(@book)
+         end
+        else
+            @review = Review.find(:id params[:id])
+
     end
 
     def edit
@@ -37,5 +51,6 @@ class ReviewsController < ApplicationController
     
     def review_params
         params.require(:review).permit(:title, :review)
+
     end
 end
