@@ -10,6 +10,27 @@
   </head>
 
   <body>
+  <h1> The Undertower
     <%= yield %>
+    
+    <footer> 
+    <% if current_user %>
+    <br>
+    <%= link_to "Add a new review", new_review_path %>
+    <br>
+    <%= link_to "See all Books", new_books_path %>
+    <br>
+    <%= link_to "See all Reviews", reviews_path %>
+    <br>
+    <%= link_to "logout", logout_path, method: :post%>
+    <br>
+    <%else%>
+    <%= link_to "Sign up!", signup_path %>
+    <br>
+    <%= link_to "Log In", login_path%>
+    <br>
+    <%= link to "Sign in with Facebook!", 'auth/facebook'%>
+    <% end %>
+    </footer>
   </body>
 </html>
