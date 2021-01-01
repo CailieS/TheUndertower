@@ -14,4 +14,18 @@ def create
     end
 end
 
+def login_with_fb
+    user = User.find_or_create_by(username: request.env['omniauth.auth']['info'])
+    u.password = 'password'
+    end
+    user.save
+    session[:user_id] = user.id
+    redirect_to books_path
+end
+
+def festroy
+    session.clear
+    redirect_to '/'
+end
+
 end
