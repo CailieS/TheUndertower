@@ -1,7 +1,5 @@
-<h2><%= review.title %></h2>
+<% @review = Review.all %>
+<% @title = %>
+<h2><%= @review.title %></h2>
 <h3>by: <%= link_to review.title.name, review_posts_path(review.book) %></h3>
 <p><%= review.review %></p>
-
-<% end %>
-
-

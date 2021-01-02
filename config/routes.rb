@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   
   resources :users, except:[:new]
 
+  get '/books', to: 'books#index'
+  get '/books/:id', to: 'books#show', as: 'bookid'
+
     get '/signup', to: 'users#new'
     get '/login', to: 'sessions#new'
     post '/login', to: 'sessions#create'
@@ -21,4 +24,5 @@ Rails.application.routes.draw do
   # get '/reviews/:id', to: 'reviews#show', as: 'reviews_show'
   # patch 'reviews/:id', to: 'reviews#update'
   # #delete 'reviews/:id/delete', to 'reviews#destroy'
+  
 end

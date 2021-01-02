@@ -2,7 +2,7 @@ require 'pry'
 class ReviewsController < ApplicationController
     def new
        @review = Review.new 
-       #binding.pry
+       binding.pry
     end
 
     def create
