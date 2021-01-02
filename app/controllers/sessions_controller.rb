@@ -1,3 +1,4 @@
+require 'pry'
 class SessionsController < ApplicationController
 
 def new
@@ -15,7 +16,8 @@ def create
 end
 
 def login_with_fb
-    user = User.find_or_create_by(username: auth['email']) do |u|
+    user = User.find_or_create_by(name: auth['email']) do |u|
+        #binding.pry
     u.password = 'password'
     end
     user.save

@@ -1,10 +1,13 @@
+require 'pry'
 class ReviewsController < ApplicationController
     def new
        @review = Review.new 
+       #binding.pry
     end
 
     def create
         @review = Review.new(review_params)
+        binding.pry
         if @review.save
             redirect_to review_path(@review)
         else
@@ -34,8 +37,8 @@ class ReviewsController < ApplicationController
             redirect_to reviews_path(@book)
          end
         else
-            @review = Review.find(:id params[:id])
-
+            @review = Review.find(id: params[:id])
+        end
     end
 
     def edit
@@ -51,6 +54,5 @@ class ReviewsController < ApplicationController
     
     def review_params
         params.require(:review).permit(:title, :review)
-
     end
 end
