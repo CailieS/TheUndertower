@@ -6,13 +6,8 @@ class ReviewsController < ApplicationController
 
     def create
         #byebug
-        review = Review.create(title: params[:show][:title], review: params[:show][:review])
+        review = Review.create(review_params)
         redirect_to reviews_path(@review)
-        if @review.save
-            redirect_to review_path(@review)
-        else
-            redirect_to review_path
-        end
     end
 
     def index
@@ -47,7 +42,7 @@ class ReviewsController < ApplicationController
 
     def update
         review = Review.find(id: params[:id])
-        review.update(title: params[:show][:title], review: params[:show][:review])
+        review.update(review_params)
         redirect_to reviews_path(review)
     end
 

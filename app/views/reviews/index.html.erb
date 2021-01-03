@@ -1,5 +1,7 @@
-<% @review = Review.all %>
-<% @title = %>
-<h2><%= @review.title %></h2>
-<h3>by: <%= link_to review.title.name, review_posts_path(review.book) %></h3>
-<p><%= review.review %></p>
+<h1> These are the revirews available to read! </h1>
+
+
+<% @review.each do |b| %>
+    <h3> <%= b.title %></h3>
+    <h3> <%= link_to review.title, reviews_path(reviews)</h3>
+<% end %>
