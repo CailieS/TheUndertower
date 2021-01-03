@@ -2,16 +2,16 @@ require 'pry'
 class ReviewsController < ApplicationController
     def new
        @review = Review.new 
-       binding.pry
     end
 
     def create
-        @review = Review.new(review_params)
-        binding.pry
+        #byebug
+        review = Review.create(title: params[:show][:title], review: params[:show][:review])
+        redirect_to reviews_path(@review)
         if @review.save
             redirect_to review_path(@review)
         else
-            redirect_to reviews_path
+            redirect_to review_path
         end
     end
 
@@ -42,7 +42,13 @@ class ReviewsController < ApplicationController
     end
 
     def edit
-        @review =  Review.find(params[:id])
+        @review =  Review.find(id: params[:id])
+    end
+
+    def update
+        review = Review.find(id: params[:id])
+        review.update(title: params[:show][:title], review: params[:show][:review])
+        redirect_to reviews_path(review)
     end
 
     def destroy
