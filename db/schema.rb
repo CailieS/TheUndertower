@@ -21,14 +21,12 @@ ActiveRecord::Schema.define(version: 2020_12_25_210008) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "book_id"
+    t.integer "user_id"
     t.text "title"
     t.text "review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["book_id"], name: "index_reviews_on_book_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

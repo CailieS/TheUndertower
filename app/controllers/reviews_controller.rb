@@ -5,12 +5,13 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        #byebug
-        @review = Review.new(review_params)
-        @review.save
-        redirect_to reviews_path(@review)
-        
+    @review = Review.new(review_params)
+    if @review.save
+        redirect_to review_path(@review)
+    else
+        redirect_to new_review_path
     end
+end
 
     def index
         # if params[:book_id]
@@ -23,7 +24,7 @@ class ReviewsController < ApplicationController
         #     end
         # else
             @review = Review.all
-            binding.pry
+            
        
     end
 

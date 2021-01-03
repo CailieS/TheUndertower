@@ -11,10 +11,4 @@ class UsersController < ApplicationController
         @user.save
         redirect_to reviews_path(@user)
     end
-
-    def show
-
-    end
-
-
 end
