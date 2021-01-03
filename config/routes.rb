@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   get '/books', to: 'books#index'
   get '/books/:id', to: 'books#show', as: 'bookid'
 
-    get '/signup', to: 'users#new'
-    get '/login', to: 'sessions#new'
-    post '/login', to: 'sessions#create'
-    delete '/login', to: 'sessions#destroy'
+  get '/signup', to: 'users#new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/login', to: 'sessions#delete'
 
     get '/auth/facebook/callback', to: 'sessions#login_with_fb'
   #  get '/reviews', to: 'reviews#index'

@@ -6,22 +6,25 @@ class ReviewsController < ApplicationController
 
     def create
         #byebug
-        review = Review.create(review_params)
+        @review = Review.new(review_params)
+        @review.save
         redirect_to reviews_path(@review)
+        
     end
 
     def index
-        if params[:book_id]
-            @review = Book.find(params[:author_id])
-            @book = @book.reviews
-            if !@review
-                redirect_to kitchen_path, alert: "What you're looking for isn't here! Please try again."
-            else
-                @book = @book.reviews
-            end
-        else
+        # if params[:book_id]
+        #     @review = Book.find(params[:author_id])
+        #     @book = @book.reviews
+        #     if !@review
+        #         redirect_to book_path, alert: "What you're looking for isn't here! Please try again."
+        #     else
+        #         @book = @book.reviews
+        #     end
+        # else
             @review = Review.all
-        end
+            binding.pry
+       
     end
 
     def show

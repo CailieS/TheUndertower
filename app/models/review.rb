@@ -3,4 +3,5 @@ class Review < ApplicationRecord
     belongs_to :user
     validates :review, presence: true
     validates :title, presence: true
+    
 end

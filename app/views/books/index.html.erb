@@ -5,3 +5,9 @@
     <h3> <%= b.title %></h3>
     <h3> <%= link_to books.title, books_path(bookid)</h3>
 <% end %>
+<%= link_to books.title, books_path(bookid)>
+ <input type="submit" value="write review">
+</form>
+<form method="get" action="/sessions/destroy">
+ <input type="submit" value="logout">
+ </form>

@@ -7,14 +7,9 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.new
-       
-        if @user.save
-            #binding.pry
-            redirect_to review_path(@user)
-        else
-            redirect_to root_path
-        end
+        @user = User.find_or_create_by(name: params[:user][:name], email: params[:user][:email])
+        @user.save
+        redirect_to reviews_path(@user)
     end
 
     def show
