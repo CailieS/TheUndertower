@@ -14,21 +14,21 @@
     <%= yield %>
     
     <footer> 
-    <% if current_user %>
+    <% #if current_user %>
     <br>
     <%= link_to "Add a new review", new_review_path %>
     <br>
-    <%= link_to "See all Books", new_books_path %>
+    <%= link_to "See all Books", books_path %>
     <br>
     <%= link_to "See all Reviews", reviews_path %>
     <br>
     <%= link_to "Logout!", logout_path, method: :post%>
     <br>
-    <%else%>
+    <%#else%>
     <%= link_to "Log In!", login_path%>
     <br>
     <%= link_to "Sign in with Facebook!", 'auth/facebook'%>
-    <% end %>
+    <% #end %>
     </footer>
   </body>
 </html>

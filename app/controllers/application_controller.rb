@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-        @user = User.find_by(id: session[:user_id])
+        @user ||= User.find_by(id: session[:user_id])
     end
 
-    def logged_in?
-        session.delete(@user)
-        @current_user = nil
-    end
+    # def logged_in?
+    #     session.delete(@user)
+    #     @current_user = nil
+    # end
 end

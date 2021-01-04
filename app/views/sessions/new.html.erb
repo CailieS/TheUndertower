@@ -1,8 +1,7 @@
+<%= flash[:error] %>
 <h1>Welcome to The Undertower!</h1>
 <h2>A place to review books!</h2>
 <%= form_for :user do |f|%>
-    User Name:
-    <%= f.text_field :name %><br>
     Email:
     <%= f.text_field :email %><br>
     Password:

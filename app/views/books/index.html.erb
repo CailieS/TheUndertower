@@ -1,13 +1,7 @@
 <h1> These are the books available to review! </h1>
 
 
-<% @book.each do |b| %>
+<% @books.each do |b| %>
     <h3> <%= b.title %></h3>
-    <h3> <%= link_to books.title, books_path(bookid)</h3>
+    <h3> <%= link_to b.title, book_path(b.id)%> </h3>
 <% end %>
-<%= link_to books.title, books_path(bookid)>
- <input type="submit" value="write review">
-</form>
-<form method="get" action="/sessions/destroy">
- <input type="submit" value="logout">
- </form>

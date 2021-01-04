@@ -2,16 +2,18 @@ require 'pry'
 class SessionsController < ApplicationController
 
 def new
-    @user = User.new
+    
 end
 
 def create
-    @user = User.find_or_create_by(name: params[:user][:name], email: params[:user][:email])
-    if @user && @user.authenticate(password: params[:user][:password])
+    @user = User.find_by(email: params[:user][:email])
+    #binding.pry
+    if @user && @user.authenticate(params[:user][:password])
         sessions[:user_id] = @user.id
-        redirect_to login_path(@user)
+        redirect_to user_path(@user)
     else
-       render :new 
+        flash[:error] = "Please try again"
+       redirect_to login_path 
     end
 end
 
@@ -26,7 +28,7 @@ def login_with_fb
 end
 
 def destroy
-    !logged_in?
+    session.delete(:user_id)
     redirect_to '/'
 end
 
