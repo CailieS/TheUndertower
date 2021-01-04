@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/login', to: 'sessions#delete'
 
-    get '/auth/facebook/callback', to: 'sessions#login_with_fb'
+get '/auth/facebook/callback', to: 'sessions#login_with_fb'
   #  get '/reviews', to: 'reviews#index'
   #  post '/reviews', to: 'reviews#create'
   #  get '/reviews/new', to: 'reviews#new'

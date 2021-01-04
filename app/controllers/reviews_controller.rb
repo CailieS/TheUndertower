@@ -4,14 +4,16 @@ class ReviewsController < ApplicationController
        @review = Review.new 
     end
 
-    def create
-    @review = Review.new(review_params)
-    if @review.save
-        redirect_to review_path(@review)
-    else
-        redirect_to new_review_path
+    def create 
+     @review = Review.new(review_params)
+     @user = User.find(session[:user_id])
+     binding.pry
+        if @review.save
+            redirect_to book_review_path(@book, @review)
+        else 
+            render :new 
+        end 
     end
-end
 
     def index
         # if params[:book_id]
@@ -58,6 +60,6 @@ end
     private
     
     def review_params
-        params.require(:review).permit(:title, :review)
+        params.require(:review).permit(:title, :review, :book_id, :review_id)
     end
 end

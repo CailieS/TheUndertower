@@ -5,10 +5,15 @@ class UsersController < ApplicationController
         @user = User.new
         #binding.pry
     end
-
-    def create
-        @user = User.find_or_create_by(name: params[:user][:name], email: params[:user][:email])
-        @user.save
-        redirect_to reviews_path(@user)
-    end
+    
+    # def create 
+    #     user = User.find_by(username: params[:user][:name]) 
+    #     if user && user.authenticate(params[:user][:email])
+    #          binding.pry
+    #         session[:user_id] = user.id 
+    #         redirect_to books_path
+    #     else
+    #        render :new
+    #     end 
+    # end
 end
