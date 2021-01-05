@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'application#home'
+  root to: 'sessions#home'
   
   resources :books, except:[:destroy, :create, :new, :update] do
     resources :reviews
