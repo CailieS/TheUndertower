@@ -1,13 +1,7 @@
 <h1> These are the reviews other people have left! </h1>
 
 
-<% @review.each do |b| %>
-    <h3> <%= b.title %></h3>
-    <h3> <%= link_to review.title, reviews_path(reviews)%></h3> 
+<% @review.each do |r| %>
+    <h3> <%= link_to r.title, review_path(r.id)%></h3> 
 <% end %>
 
- 
-</form>
-<form method="get" action="/sessions/destroy">
- <input type="submit" value="logout">
- </form>
