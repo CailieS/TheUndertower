@@ -2,6 +2,28 @@ require 'pry'
 class ReviewsController < ApplicationController
     before_action :require_login
     
+ 
+    
+    def new
+        @review = Review.new
+        @review.build_book
+
+#         # if params[:book_id] && @review = Book.find(params[:book_id])
+#             @review = @book.review.build
+#   #         redirect_to book_path, alert: "What you're looking for isn't here! Please try again."
+#          else
+#             @review = Review.new
+#         end
+    end
+
+    def create 
+     @review = Review.new(review_params)
+     @review.user_id = session[:user_id]
+    if @review.save!
+        redirect_to review_path(@review) 
+     end
+   end
+
     def index
         # if params[:book_id] && @review = Book.find(params[:book_id])
         #     @reviews = @book.reviews
@@ -9,26 +31,6 @@ class ReviewsController < ApplicationController
         # else
             @reviews = Review.all
         #end
-    end
-    
-    def new
-        if params[:book_id] && @review = Book.find(params[:book_id])
-            @review = @book.review.build
-  #         redirect_to book_path, alert: "What you're looking for isn't here! Please try again."
-         else
-            @review = Review.new
-        end
-    end
-
-    def create 
-     @review = current_user.reviews.build(review_params)
-     @user = User.find(session[:user_id])
-     #binding.pry
-        if @review.save
-            redirect_to book_review_path(@book, @review)
-        else 
-            render :new 
-        end 
     end
 
     def show
@@ -62,7 +64,7 @@ class ReviewsController < ApplicationController
     private
     
     def review_params
-        params.require(:review).permit(:title, :review, :book_id, :review_id)
+        params.require(:review).permit(:title, :review, :book_id, :brand_attributes)
     end
 
     def require_login

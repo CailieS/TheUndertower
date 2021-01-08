@@ -1,15 +1,6 @@
 <h1> These are the reviews other people have left! </h1>
 
-
-<<<<<<< HEAD
-<% @review.each do |i| %>
-    <h3> <%= link_to i.title, review_path(i.id)%></h3> 
-<% end %>
-
- 
-=======
 <% @review.each do |r| %>
     <h3> <%= link_to r.title, review_path(r.id)%></h3> 
 <% end %>
 
->>>>>>> 53d743131011bbf656c1e61a2337a4072e0e6167

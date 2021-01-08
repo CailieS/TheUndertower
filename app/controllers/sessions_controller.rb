@@ -1,15 +1,12 @@
 require 'pry'
 class SessionsController < ApplicationController
 
-<<<<<<< HEAD
 def home
-=======
-def home 
-    binding.pry
->>>>>>> 53d743131011bbf656c1e61a2337a4072e0e6167
+
 end
 
 def new
+    
 end
 
 def create

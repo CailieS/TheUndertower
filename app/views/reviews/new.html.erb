@@ -1,15 +1,23 @@
-<% if @review.book %>
-<h1>Write a New Review for <%= @book.title %>!</h1>
-<% else %>
-<h1>Write a New Review!</h1>
-<%= form_for ([@book, @review]) do |f|%>
-<% if !@review.book %>
-    <%= f.label :title %>
-    <%= f.text_field :title %><br>
-    <% else %>
-    <%= f.hidden_field :book_id %><br>
-    <% end %>
-    <%= f.label :review %>
-    <%= f.text_field :review %>
-    <%= f.submit "Submit!" %>
+<h1>Write a new review!</h1>
+  <%= form_for @review do |f|%>
+  <div>
+    Title!
+    <br><%= f.text_field :title %><br>
+    </div>
+    <div>
+    Write your review!
+    <br><%= f.text_field :review %><br>
+    </div>
+    
+    <br><p> Select a title that already exists!</p>
+    <%= f.collection_select :book_id, Book.all, :id, :name %>
+    <br><p> Create a new title! </p>
+    <%= f.fields_for :book do |b| %>
+    <%= b.label :title %>
+     <%= b.text_field :title %>
+     <% end %>
+
+    
+
+<br><%= f.submit "Submit!" %><br>
 <% end %>
