@@ -1,8 +1,14 @@
+<% if @review.book %>
+<h1>Write a New Review for <%= @book.title %>!</h1>
+<% else %>
 <h1>Write a New Review!</h1>
-
-<%= form_for @review do |f|%>
+<%= form_for ([@book, @review]) do |f|%>
+<% if !@review.book %>
     <%= f.label :title %>
     <%= f.text_field :title %><br>
+    <% else %>
+    <%= f.hidden_field :book_id %><br>
+    <% end %>
     <%= f.label :review %>
     <%= f.text_field :review %>
     <%= f.submit "Submit!" %>

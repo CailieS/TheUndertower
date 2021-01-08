@@ -1,13 +1,29 @@
 require 'pry'
 class ReviewsController < ApplicationController
+    before_action :require_login
+    
+    def index
+        # if params[:book_id] && @review = Book.find(params[:book_id])
+        #     @reviews = @book.reviews
+        #     redirect_to book_path, alert: "What you're looking for isn't here! Please try again."
+        # else
+            @reviews = Review.all
+        #end
+    end
+    
     def new
-       @review = Review.new 
+        if params[:book_id] && @review = Book.find(params[:book_id])
+            @review = @book.review.build
+  #         redirect_to book_path, alert: "What you're looking for isn't here! Please try again."
+         else
+            @review = Review.new
+        end
     end
 
     def create 
-     @review = Review.new(review_params)
+     @review = current_user.reviews.build(review_params)
      @user = User.find(session[:user_id])
-     binding.pry
+     #binding.pry
         if @review.save
             redirect_to book_review_path(@book, @review)
         else 
@@ -15,25 +31,11 @@ class ReviewsController < ApplicationController
         end 
     end
 
-    def index
-        # if params[:book_id]
-        #     @review = Book.find(params[:author_id])
-        #     @book = @book.reviews
-        #     if !@review
-        #         redirect_to book_path, alert: "What you're looking for isn't here! Please try again."
-        #     else
-        #         @book = @book.reviews
-        #     end
-        # else
-            @review = Review.all
-            
-       
-    end
-
     def show
+        
         if params[:book_id]
-        @book =  Book.find(id: params[:book_id])
-        @review = @book.book.find(id: params[:id])
+           @book =  Book.find(id: params[:book_id])
+           @review = @book.book.find(id: params[:id])
         if @review == nil 
             redirect_to reviews_path(@book)
          end
@@ -62,4 +64,8 @@ class ReviewsController < ApplicationController
     def review_params
         params.require(:review).permit(:title, :review, :book_id, :review_id)
     end
+
+    def require_login
+        return head(:forbidden) unless session.include? :user_id
+      end
 end

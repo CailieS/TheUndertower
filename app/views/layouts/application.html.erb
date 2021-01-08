@@ -4,31 +4,50 @@
     <title>TheUndertower</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/15ffe72ce5.js" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+   
+
   </head>
+
+  <div>
+    <% if current_user %>
+      <nav class="navbar navbar-inverse">
+        <a class="navbar-brand" href="/">TheUndertower</a>
+        <li><%= link_to "Add a new review", new_review_path %></li>
+        <li><%= link_to "See all Books", books_path %></li>
+        <li><%= link_to "See all Reviews", reviews_path %></li>
+        <li><%= link_to "Logout!", logout_path, method: :post%></li>
+  <% end %>
+  </div>
+
+  <div>
+  <% if !current_user%>
+  <nav class="navbar navbar-inverse">
+    <%= link_to "Login!",  login_path %>
+    <%= link_to "Signup!", new_user_path %>
+    <%= link_to "Log in with Facebok", "/auth/facebook" %>
+
+  </div>
+  <% end %>
+  </nav>
+
+
+
 
   <body>
  
     <%= yield %>
-    
-    <footer> 
-    <% #if current_user %>
-    <br>
-    <%= link_to "Add a new review", new_review_path %>
-    <br>
-    <%= link_to "See all Books", books_path %>
-    <br>
-    <%= link_to "See all Reviews", reviews_path %>
-    <br>
-    <%= link_to "Logout!", logout_path, method: :post%>
-    <br>
-    <%#else%>
-    <%= link_to "Log In!", login_path%>
-    <br>
-    <%= link_to "Sign in with Facebook!", 'auth/facebook'%>
-    <% #end %>
-    </footer>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>
 </html>
