@@ -5,8 +5,9 @@ class ReviewsController < ApplicationController
  
     
     def new
-        @review = Review.new
-        @review.build_book
+        @book = Book.find_by_id(params[:id])
+       # binding.pry
+       @review = @book.build_review
 
 #         # if params[:book_id] && @review = Book.find(params[:book_id])
 #             @review = @book.review.build
