@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
  
     
     def new
-        @book = Book.find_by_id(params[:id])
+        @book = Book.find_by_id(params[:book_id])
        # binding.pry
        @review = @book.review.build
 
@@ -67,7 +67,7 @@ class ReviewsController < ApplicationController
     private
     
     def review_params
-        params.require(:review).permit(:title, :review, :book_id, :brand_attributes)
+        params.require(:review).permit(:title, :review, :book_id, :book_attributes[:title])
     end
 
     def require_login

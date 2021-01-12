@@ -5,7 +5,7 @@
   <div>
     Title!
     <%= f.label :stars %>
-    <%= f.number_field :stars, min:0, max: 5 %>
+    <%= f.number_field :stars, min:0, max: 6 %>
     <br><%= f.text_field :title %><br>
   </div>
   <div>
@@ -15,6 +15,7 @@
     
   <br><p> Select a title that already exists!</p>
     <%= f.collection_select :book_id, Book.all, :id, :name %>
+  
   <br><p> Create a new title! </p>
     <%= f.fields_for :book do |b| %>
     <%= f.label :title %>
