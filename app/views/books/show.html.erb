@@ -1,8 +1,8 @@
 <h1><%= @book.title %></h1>
 <h2> By: <%= @book.author %> </h2>
 <h3> Cover: <%= @book.image_url %> </h3>
-<p><%= link_to "See All Reviews", book_reviews_path(@book) %></p>
-<p><%= link_to "Add new Review", new_book_reviews_path(@book) %></p>
+<p><%= link_to "See All Reviews", review_path(@book) %></p>
+<p><%= link_to "Add new Review", new_review_path(@book) %></p>
 <h4>Reviews: </h4>
 <% @book.review each do |b|%>
 <li><strong><%=b.user.username%></strong> says "<% link_to b.review(b) %>"</li>
