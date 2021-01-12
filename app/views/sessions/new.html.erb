@@ -1,4 +1,4 @@
-<%= flash[:error] %>
+<% render partial: "layouts/errors", locals: {object: review} %>
 <h1>Welcome to The Undertower!</h1>
 <h2>A place to review books!</h2>
 <%= form_for :user do |f|%>

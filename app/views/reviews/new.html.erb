@@ -1,3 +1,5 @@
+<% render partial: "layouts/errors", locals: {object: review} %>
+
 <h1>Write a new review!</h1>
   <%= form_for(@review) do |f|%>
   <div>
@@ -5,21 +7,18 @@
     <%= f.label :stars %>
     <%= f.number_field :stars, min:0, max: 5 %>
     <br><%= f.text_field :title %><br>
-    </div>
-    <div>
+  </div>
+  <div>
     Write your review!
     <br><%= f.text_area :review %><br>
-    </div>
+  </div>
     
-    <br><p> Select a title that already exists!</p>
+  <br><p> Select a title that already exists!</p>
     <%= f.collection_select :book_id, Book.all, :id, :name %>
-    <br><p> Create a new title! </p>
+  <br><p> Create a new title! </p>
     <%= f.fields_for :book do |b| %>
     <%= f.label :title %>
-     <%= f.hidden_field :book_id %>
-     <% end %>
-
-    
-
-<br><%= f.submit "Submit!" %><br>
+    <%= f.hidden_field :book_id %>
+    <% end %>
+  <br><%= f.submit "Submit!" %><br>
 <% end %>
