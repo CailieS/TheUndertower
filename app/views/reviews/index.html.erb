@@ -1,7 +1,8 @@
 <h1> These are the reviews other people have left! </h1>
 
 <div class="container">
-    <div class="row">
-    <%= render @reviews%>
+    <% @reviews.each do |r|%>
+    <div> <%= r.title %> - <%= r.comment %> - <%= r.user.name %> </div>
+    <% end %>
 </div>
 

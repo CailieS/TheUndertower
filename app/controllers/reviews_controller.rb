@@ -7,9 +7,10 @@ class ReviewsController < ApplicationController
  
     
     def new
+        @review = Review.new
         @book = Book.find_by_id(params[:book_id])
        # binding.pry
-       @review = @book.review.build
+       
 
 #         # if params[:book_id] && @review = Book.find(params[:book_id])
 #             @review = @book.review.build
@@ -20,12 +21,14 @@ class ReviewsController < ApplicationController
     end
 
     def create 
+
+    binding.pry
      @review = Review.new(review_params)
      @review.user_id = session[:user_id]
-    if @review.save!
-        redirect_to review_path(@review) 
-     end
-   end
+        if @review.save
+            redirect_to review_path(@review) 
+        end
+    end
 
     def index
         # if params[:book_id] && @review = Book.find(params[:book_id])
@@ -38,25 +41,27 @@ class ReviewsController < ApplicationController
 
     def show
         
-        if params[:book_id]
-           @book =  Book.find(id: params[:book_id])
-           @review = @book.book.find(id: params[:id])
-        if @review == nil 
-            redirect_to reviews_path(@book)
-         end
-        else
-            @review = Review.find(id: params[:id])
-        end
+        # if params[:book_id]
+        #    @book =  Book.find(id: params[:book_id])
+        #    @review = @book.book.find(id: params[:id])
+        # if @review == nil 
+        #     redirect_to reviews_path(@book)
+        #  end
+        # else
+            @review = Review.find_by(id: params[:id])
     end
 
     def edit
-        @review =  Review.find(id: params[:id])
+        @review =  Review.find_by(id: params[:id])
     end
 
     def update
-        review = Review.find(id: params[:id])
-        review.update(review_params)
-        redirect_to reviews_path(review)
+        @review =  Review.find_by(id: params[:id])
+        if @review.update(review_params)
+            redirect_to review_path(@review)
+        else  
+            render :edit
+        end
     end
 
     def destroy
@@ -67,7 +72,7 @@ class ReviewsController < ApplicationController
     private
     
     def review_params
-        params.require(:review).permit(:title, :review, :book_id, :book_attributes[:title])
+        params.require(:review).permit(:title, :comment, :book_id)
     end
 
     def require_login
