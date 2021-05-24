@@ -2,7 +2,12 @@ require 'pry'
 class SessionsController < ApplicationController
 
 def home
+    if logged_in?
 
+        @reviews = current_user.reviews
+    else
+        redirect_to login_path
+    end
 end
 
 def new
@@ -43,3 +48,4 @@ def auth
 end
 
 end
+
